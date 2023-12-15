@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ParkingSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="plateNo" Type="int" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OwnerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Payment" Type="int" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="roleDescription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="slotItems">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="floor1" Type="nvarchar" MaxLength="50" />
+          <Property Name="floor2" Type="nvarchar" MaxLength="50" />
+          <Property Name="floor3" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SlotTable">
+          <Key>
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="slotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slotNumber1" Type="nvarchar" MaxLength="50" />
+          <Property Name="floorNumber1" Type="nvarchar" MaxLength="50" />
+          <Property Name="slotNumber2" Type="nvarchar" MaxLength="50" />
+          <Property Name="floorNumber2" Type="nvarchar" MaxLength="50" />
+          <Property Name="slotNumber3" Type="nvarchar" MaxLength="50" />
+          <Property Name="floorNumber3" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="userGender" Type="nvarchar" MaxLength="128" />
+          <Property Name="userPhone" Type="nvarchar" MaxLength="128" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="128" />
+          <Property Name="userAddress" Type="nvarchar" MaxLength="128" />
+          <Property Name="userName" Type="nvarchar" MaxLength="128" />
+          <Property Name="userPass" Type="nvarchar" MaxLength="50" />
+          <Property Name="roleId" Type="int" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+          <Property Name="VehicleModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="VehiclePrice" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ParkingSystem.dbo.vw_Slots' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Slots">
+          <Key>
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="slotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slotNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="floorNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="ParkingSystemModelStoreContainer">
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="slotItems" EntityType="Self.slotItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlotTable" EntityType="Self.SlotTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_Slots" EntityType="Self.vw_Slots" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_Slots].[slotId] AS [slotId], 
+[vw_Slots].[slotNumber] AS [slotNumber], 
+[vw_Slots].[floorNumber] AS [floorNumber]
+FROM [dbo].[vw_Slots] AS [vw_Slots]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ParkingSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ParkingSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Reservation" EntityType="ParkingSystemModel.Reservation" />
+          <EntitySet Name="Role" EntityType="ParkingSystemModel.Role" />
+          <EntitySet Name="SlotTable" EntityType="ParkingSystemModel.SlotTable" />
+          <EntitySet Name="Users" EntityType="ParkingSystemModel.Users" />
+          <EntitySet Name="Vehicle" EntityType="ParkingSystemModel.Vehicle" />
+          <EntitySet Name="vw_Slots" EntityType="ParkingSystemModel.vw_Slots" />
+          <EntitySet Name="slotItems" EntityType="ParkingSystemModel.slotItems" />
+        </EntityContainer>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plateNo" Type="Int32" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Payment" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="roleDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SlotTable">
+          <Key>
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="slotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slotNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="floorNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="slotNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="floorNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="slotNumber3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="floorNumber3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userGender" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userPhone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userEmail" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userPass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="roleId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehiclePrice" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_Slots">
+          <Key>
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="slotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slotNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="floorNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="slotItems">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="floor1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="floor2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="floor3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ParkingSystemModelStoreContainer" CdmEntityContainer="ParkingSystemEntities">
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="ParkingSystemModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="plateNo" ColumnName="plateNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ParkingSystemModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlotTable">
+            <EntityTypeMapping TypeName="ParkingSystemModel.SlotTable">
+              <MappingFragment StoreEntitySet="SlotTable">
+                <ScalarProperty Name="floorNumber3" ColumnName="floorNumber3" />
+                <ScalarProperty Name="slotNumber3" ColumnName="slotNumber3" />
+                <ScalarProperty Name="floorNumber2" ColumnName="floorNumber2" />
+                <ScalarProperty Name="slotNumber2" ColumnName="slotNumber2" />
+                <ScalarProperty Name="floorNumber1" ColumnName="floorNumber1" />
+                <ScalarProperty Name="slotNumber1" ColumnName="slotNumber1" />
+                <ScalarProperty Name="slotId" ColumnName="slotId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ParkingSystemModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="userPass" ColumnName="userPass" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userAddress" ColumnName="userAddress" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="userGender" ColumnName="userGender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="ParkingSystemModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="VehiclePrice" ColumnName="VehiclePrice" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Slots">
+            <EntityTypeMapping TypeName="ParkingSystemModel.vw_Slots">
+              <MappingFragment StoreEntitySet="vw_Slots">
+                <ScalarProperty Name="floorNumber" ColumnName="floorNumber" />
+                <ScalarProperty Name="slotNumber" ColumnName="slotNumber" />
+                <ScalarProperty Name="slotId" ColumnName="slotId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="slotItems">
+            <EntityTypeMapping TypeName="ParkingSystemModel.slotItems">
+              <MappingFragment StoreEntitySet="slotItems">
+                <ScalarProperty Name="floor3" ColumnName="floor3" />
+                <ScalarProperty Name="floor2" ColumnName="floor2" />
+                <ScalarProperty Name="floor1" ColumnName="floor1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

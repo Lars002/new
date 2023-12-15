@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ParkingSystemModelStoreContainer" CdmEntityContainer="ParkingSystemEntities">
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="ParkingSystemModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="plateNo" ColumnName="plateNo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="ParkingSystemModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SlotTable">
+      <EntityTypeMapping TypeName="ParkingSystemModel.SlotTable">
+        <MappingFragment StoreEntitySet="SlotTable">
+          <ScalarProperty Name="floorNumber3" ColumnName="floorNumber3" />
+          <ScalarProperty Name="slotNumber3" ColumnName="slotNumber3" />
+          <ScalarProperty Name="floorNumber2" ColumnName="floorNumber2" />
+          <ScalarProperty Name="slotNumber2" ColumnName="slotNumber2" />
+          <ScalarProperty Name="floorNumber1" ColumnName="floorNumber1" />
+          <ScalarProperty Name="slotNumber1" ColumnName="slotNumber1" />
+          <ScalarProperty Name="slotId" ColumnName="slotId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ParkingSystemModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="userPass" ColumnName="userPass" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userAddress" ColumnName="userAddress" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+          <ScalarProperty Name="userGender" ColumnName="userGender" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicle">
+      <EntityTypeMapping TypeName="ParkingSystemModel.Vehicle">
+        <MappingFragment StoreEntitySet="Vehicle">
+          <ScalarProperty Name="VehiclePrice" ColumnName="VehiclePrice" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_Slots">
+      <EntityTypeMapping TypeName="ParkingSystemModel.vw_Slots">
+        <MappingFragment StoreEntitySet="vw_Slots">
+          <ScalarProperty Name="floorNumber" ColumnName="floorNumber" />
+          <ScalarProperty Name="slotNumber" ColumnName="slotNumber" />
+          <ScalarProperty Name="slotId" ColumnName="slotId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="slotItems">
+      <EntityTypeMapping TypeName="ParkingSystemModel.slotItems">
+        <MappingFragment StoreEntitySet="slotItems">
+          <ScalarProperty Name="floor3" ColumnName="floor3" />
+          <ScalarProperty Name="floor2" ColumnName="floor2" />
+          <ScalarProperty Name="floor1" ColumnName="floor1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

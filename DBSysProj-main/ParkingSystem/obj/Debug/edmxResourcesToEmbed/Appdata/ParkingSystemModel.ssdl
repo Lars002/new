@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParkingSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="plateNo" Type="int" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+    <Property Name="OwnerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Payment" Type="int" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="roleDescription" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="slotItems">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="floor1" Type="nvarchar" MaxLength="50" />
+    <Property Name="floor2" Type="nvarchar" MaxLength="50" />
+    <Property Name="floor3" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SlotTable">
+    <Key>
+      <PropertyRef Name="slotId" />
+    </Key>
+    <Property Name="slotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="slotNumber1" Type="nvarchar" MaxLength="50" />
+    <Property Name="floorNumber1" Type="nvarchar" MaxLength="50" />
+    <Property Name="slotNumber2" Type="nvarchar" MaxLength="50" />
+    <Property Name="floorNumber2" Type="nvarchar" MaxLength="50" />
+    <Property Name="slotNumber3" Type="nvarchar" MaxLength="50" />
+    <Property Name="floorNumber3" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" />
+    <Property Name="userGender" Type="nvarchar" MaxLength="128" />
+    <Property Name="userPhone" Type="nvarchar" MaxLength="128" />
+    <Property Name="userEmail" Type="nvarchar" MaxLength="128" />
+    <Property Name="userAddress" Type="nvarchar" MaxLength="128" />
+    <Property Name="userName" Type="nvarchar" MaxLength="128" />
+    <Property Name="userPass" Type="nvarchar" MaxLength="50" />
+    <Property Name="roleId" Type="int" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+    <Property Name="VehicleModel" Type="nvarchar" MaxLength="50" />
+    <Property Name="VehiclePrice" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ParkingSystem.dbo.vw_Slots' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_Slots">
+    <Key>
+      <PropertyRef Name="slotId" />
+    </Key>
+    <Property Name="slotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="slotNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="floorNumber" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="ParkingSystemModelStoreContainer">
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="slotItems" EntityType="Self.slotItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SlotTable" EntityType="Self.SlotTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_Slots" EntityType="Self.vw_Slots" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[vw_Slots].[slotId] AS [slotId], 
+[vw_Slots].[slotNumber] AS [slotNumber], 
+[vw_Slots].[floorNumber] AS [floorNumber]
+FROM [dbo].[vw_Slots] AS [vw_Slots]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
